@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        @import 'https://fonts.googleapis.com/css?family=Open+Sans:300, 400, 600';
+
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  font-family: 'Open Sans', sans-serif;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  background-color: #f6f6f6;
+  min-height: 100vh;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body.is--noscroll {
+  overflow: hidden;
+}
+
+.container {
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 35px;
+}
+
+a {
+  text-decoration: none;
+  color: #c00;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 300;
+  border-bottom: 2px solid #c00;
+}
+
+.btn {
+  color: #fff;
+  background: #c00;
+  text-transform: uppercase;
+  padding: 1em 1.5em;
+  font-weight: bold;
+  transition: all 300ms;
+  border: 2px solid transparent;
+  margin-bottom: 5px;
+}
+
+.btn:hover,
+.btn:active,
+.btn:focus {
+  border-color: transparent;
+  background: transparent;
+  color: #c00;
+  border-color: #c00;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #c00;
+}
+
+.btn-secondary:hover,
+.btn-secondary:active,
+.btn-secondary:focus {
+  background: #c00;
+  color: #fff;
+}
+
+/* Popup */
+.popup-blackout {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1010;
+  background-color: rgba(0, 0, 0, .85);
+}
+.popup-blackout.is--blacked-out {
+  display: block;
+}
+
+.popup-modal {
+  display: none;
+  width: 600px;
+  max-width: 100%;
+  position: fixed;
+  overflow: hidden;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1011;
+  background: #fff;
+}
+
+.popup-modal.is--visible {
+  display: block;
+  opacity: 1;
+}
+
+.popup-modal__header {
+}
+.popup-modal__content {
+  position: relative;
+  top: 0;
+  bottom: 50px;
+  overflow: auto;
+  max-height: 50vh;
+}
+.popup-modal__footer {
+  bottom: 0;
+}
+
+.popup-modal__content,
+.popup-modal__footer {
+  padding: 10px 20px;
+}
+
+.popup-modal__title {
+  margin: 0;
+  padding: 10px 40px 0 20px;
+  border: none;
+  border-bottom: 2px solid #c00;
+}
+
+.popup-modal__close {
+  position: absolute;
+  font-size: 2.5rem;
+  right: 0;
+  top: 0;
+  padding: 10px 15px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+    </style>
+    <title>Document</title>
+</head>
+<body>
+  <div class="container">
+    <h1>This is index.html</h1>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit architecto nemo labore nihil aliquid neque itaque eius repellendus, aliquam harum assumenda ut molestias reprehenderit quibusdam, a dolores quae doloremque minima!
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit architecto nemo labore nihil aliquid neque itaque eius repellendus, aliquam harum assumenda ut molestias reprehenderit quibusdam, a dolores quae doloremque minima!
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit architecto nemo labore nihil aliquid neque itaque eius repellendus, aliquam harum assumenda ut molestias reprehenderit quibusdam, a dolores quae doloremque minima!
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit architecto nemo labore nihil aliquid neque itaque eius repellendus, aliquam harum assumenda ut molestias reprehenderit quibusdam, a dolores quae doloremque minima!
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit architecto nemo labore nihil aliquid neque itaque eius repellendus, aliquam harum assumenda ut molestias reprehenderit quibusdam, a dolores quae doloremque minima!
+        </p>
+        <button
+            type="button"
+            class="btn popup-trigger"
+            data-popup-trigger="one"
+        >
+        Popup Trigger One
+        </button>
+
+        <button
+            type="button"
+            class="btn btn-secondary popup-trigger"
+            data-popup-trigger="two"
+        >
+        Popup Trigger Two
+        </button>
+        <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. At voluptatem cum voluptates repellat perspiciatis, eos ipsa fuga vero quam enim minima corrupti facilis dolores quia dolorum ea? Dolore, totam at? Laboriosam ratione cupiditate fugit animi, omnis ipsum quod voluptatibus ex nisi culpa similique accusamus mollitia velit, perspiciatis quasi id dolorem nesciunt at laudantium. Soluta fuga quos aliquam sapiente sed expedita harum ab provident atque, veritatis eum nam cumque, ducimus amet consectetur officiis aut nostrum molestiae numquam repudiandae delectus eaque iusto. Quis, veritatis iure. Obcaecati harum expedita, fugit excepturi corporis soluta numquam aut. Excepturi, delectus similique? Dolorem deleniti officia molestias explicabo minus tempora alias, sed quia itaque esse neque optio fugit eaque consequuntur, eos ducimus expedita quas rerum voluptates nesciunt. Id fuga provident doloremque eaque blanditiis ad autem totam amet. Delectus unde praesentium labore tempore explicabo exercitationem beatae dolor, impedit quis harum repudiandae quas voluptas ducimus reprehenderit cupiditate sequi. Debitis ab quae accusantium possimus quibusdam sunt non illo ipsa sapiente est omnis exercitationem tempore officiis enim, vero quisquam earum ea? Harum, officiis rem vitae at officia reprehenderit ducimus ad similique tenetur quia nemo eos, quae eligendi quidem distinctio? Nobis, vitae vel voluptate nulla molestiae explicabo in accusamus beatae. Eos, doloremque quibusdam!
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis obcaecati culpa ratione itaque vel. Eveniet repudiandae iste officia perferendis omnis quas illo vitae quia ea doloribus soluta natus, sequi laudantium dicta odio quaerat sapiente iure eum dolor voluptatibus inventore neque est asperiores. Quibusdam porro voluptatum quaerat illum cumque aliquam tempore deleniti doloremque voluptate nostrum! Odit, qui at. Repellendus esse velit quae nostrum quia ipsam, perferendis facere. Enim, repellendus odit sunt nemo recusandae nam expedita est culpa voluptatem saepe atque cumque ut iste tenetur quis adipisci voluptatibus dolore? Et ratione vitae quis vel sed. Labore nisi recusandae dicta maiores, ex repudiandae perspiciatis est sequi sint laudantium rerum. Vero dolore quibusdam nemo. Sequi voluptates aperiam delectus aspernatur corporis dolore debitis quod fugiat cumque commodi culpa, ipsum sit quas, officia at eum maxime incidunt, omnis ut! Possimus delectus placeat tempore maiores vel mollitia neque error saepe eius, sint consectetur, odio suscipit quibusdam voluptatum dignissimos cumque sequi? Excepturi consequuntur nulla magni voluptates eius totam eligendi quisquam sequi blanditiis possimus earum necessitatibus facere dolore ea ab, neque laborum autem ut. Qui a ex dicta delectus eveniet vero nemo sequi, autem maiores unde voluptates rem, animi harum optio ut repellat doloribus quidem et, eaque nihil quae. At amet deleniti quaerat explicabo consectetur sapiente nam eius vero commodi repudiandae blanditiis fuga totam rerum accusantium consequuntur odit quod tempore atque numquam, culpa impedit animi, voluptas repellendus! Deleniti, expedita? Eos iure maxime tempore ratione vel ad, aliquam illo reiciendis nemo sit ipsa tempora eum accusamus esse itaque vero dolorum magnam expedita in quos facilis! Sequi quia eligendi officia nam? Dicta accusamus aut dolorem voluptates itaque eum veritatis ipsa exercitationem earum minus quisquam illo, aliquam rem sed modi, saepe nemo corporis reprehenderit eius porro quo distinctio architecto quia neque! Eligendi sed eaque iure, saepe minus quos incidunt veniam mollitia totam.
+        </p>
+  </div>
+    <div class="popup-blackout"></div>
+    <div 
+        class="popup-modal" 
+        data-popup-modal="one"
+    >
+        <div class="popup-modal__header">
+            <span class="popup-modal__close">&times;</span>
+            <h1 class="popup-modal__title">
+                Modal One Title
+            </h1>
+        </div>
+        <div class="popup-modal__content">
+          <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad delectus perferendis doloremque reprehenderit maiores sequi recusandae, suscipit quisquam itaque quam ab accusantium quasi excepturi dicta voluptates illo. Sit tempore neque iusto fuga asperiores, consequuntur explicabo deserunt eos, voluptatem, quasi aut rerum minus nobis reprehenderit quidem! Libero consequuntur ullam eveniet, quos vero officia saepe, perspiciatis est odit sunt recusandae? Explicabo vero, delectus amet tempore laudantium similique non unde animi odio rem corporis aliquam incidunt temporibus, eius quasi, nemo quia aliquid facere perferendis. Itaque tempore delectus atque modi quam! Quibusdam autem blanditiis temporibus magni quod tempore excepturi saepe sunt veritatis cupiditate incidunt labore ex iusto dolor ipsum omnis delectus adipisci, accusantium sed dolorum similique repudiandae. Ratione aliquid ab earum reprehenderit explicabo nam tempore officiis corporis, at possimus ipsa ea hic eum praesentium fugiat velit qui maiores excepturi quaerat. Nemo recusandae veniam eaque sequi ut et hic quaerat in explicabo, reiciendis corporis omnis reprehenderit quos iste aspernatur sit laboriosam rem animi cumque? Nostrum commodi quidem doloremque eius quaerat pariatur magni nam explicabo sunt cupiditate, placeat et nisi tempore. Necessitatibus, nihil officia corporis quam doloribus, aut amet nulla facilis magnam dolorum placeat nostrum pariatur omnis corrupti dignissimos. Non cumque quas repellendus enim ipsam? Ullam aliquid vel placeat maiores et! Exercitationem deserunt debitis repellendus totam nesciunt veritatis eius voluptate odio, nisi asperiores aperiam unde laboriosam eum natus vel a, consequuntur nulla saepe doloribus obcaecati aspernatur dolores est, explicabo itaque? Reiciendis cupiditate adipisci laudantium consectetur? Possimus, sequi enim rem dolore laudantium excepturi eos nisi ipsa id quod nobis molestiae quis aut, sunt sint beatae voluptate inventore velit! Non optio aliquid earum repellat veritatis? Quia asperiores mollitia corporis officia saepe odio quis alias dolorum deserunt tenetur sunt aut at, incidunt, suscipit dignissimos excepturi. Explicabo eos earum nihil aperiam quos vel sint quia nemo sapiente amet incidunt ut laudantium aliquam suscipit, aliquid beatae quae commodi temporibus cupiditate aut! Voluptate ipsa maiores illo itaque tempore esse earum animi, in debitis placeat repellendus error? Aliquam nisi iusto deserunt eos aut quaerat ipsa consequuntur, et enim odio doloremque adipisci minus expedita obcaecati, eius eveniet at dolor iste sunt, aspernatur debitis asperiores. Eos alias quisquam eligendi praesentium unde corporis iste vero magnam soluta. Necessitatibus eveniet, quaerat est rerum temporibus aut veniam molestiae consectetur fugit ab hic cumque velit aspernatur enim accusantium! Minus laudantium necessitatibus assumenda similique ab ratione! Consectetur officiis veniam aliquam amet error molestias repudiandae nemo. Mollitia natus quam accusantium alias perferendis animi ipsa, architecto pariatur, iste, cumque dolores delectus voluptatem ex modi quo fuga nostrum! Adipisci ipsum saepe cum eos dolor magnam eius accusantium, quod voluptatem atque illum nemo, fugiat earum qui! Optio neque explicabo corrupti quam aspernatur sequi, sit eius ipsum repellat at perferendis praesentium sunt, natus reprehenderit fugiat. Consequatur ipsum minima totam incidunt voluptates accusamus voluptate sapiente porro repellat tempora magnam illo voluptatem necessitatibus quasi expedita sequi reiciendis, aliquam debitis quidem cumque excepturi rerum at delectus inventore? Veniam animi ut distinctio laudantium magnam exercitationem. Vero, est facilis et nisi laboriosam veritatis eaque praesentium. Tempora quae saepe iusto repudiandae!
+          </p>
+        </div>
+        <div class="popup-modal__footer">
+            <button class="btn popup-modal__action">Action button</button>
+        </div>
+    </div>
+    <div 
+        class="popup-modal" 
+        data-popup-modal="two"
+    >
+        <span class="popup-modal__close">&times;</span>
+        <h1 class="popup-modal__title">
+            Modal Two Title
+        </h1>
+        <div class="popup-modal__content">
+          <p>Small</p>
+        </div>
+        <div class="popup-modal__footer">
+            <button class="btn popup-modal__action">Action button</button>
+        </div>
+    </div>
+
+    <script type="application/javascript">
+    const body = document.body;
+    const modalTriggers = document.querySelectorAll(".popup-trigger");
+    const bodyBlackout = document.querySelector(".popup-blackout");
+    modalTriggers.forEach(trigger => {
+        trigger.addEventListener("click", () => {
+            const { popupTrigger } = trigger.dataset;
+            const popupModal = document.querySelector(`[data-popup-modal="${popupTrigger}"]`);
+            openPopup(popupModal);
+
+            popupModal.querySelectorAll(".popup-modal__close, .popup-modal__action").forEach(elem => {
+                elem.addEventListener("click", () => {
+                    closePopup(popupModal);
+                })
+            });
+            bodyBlackout.addEventListener("click", () => {
+                closePopup(popupModal);
+            })
+        });
+    });
+
+    const openPopup = (popupModal) => {
+        popupModal.classList.add("is--visible");
+        bodyBlackout.classList.add("is--blacked-out");
+        body.classList.add("is--noscroll");
+    }
+
+    const closePopup = (popupModal) => {
+        popupModal.classList.remove("is--visible");
+        bodyBlackout.classList.remove("is--blacked-out");
+        body.classList.remove("is--noscroll");
+    };
+    </script>
+</body>
+</html>
