@@ -140,6 +140,7 @@ h6 {
   padding: 10px 40px 0 20px;
   border: none;
   border-bottom: 2px solid #c00;
+  font-size: 30px;
 }
 
 .popup-modal__close {
@@ -150,6 +151,17 @@ h6 {
   padding: 10px 15px;
   cursor: pointer;
   line-height: 1;
+}
+
+.popup-modal__content .module-content {
+  transition: all .3s ease-out;
+  max-height: 0;
+  overflow: hidden;
+  margin: 0;
+}
+
+.popup-modal__content.is--expanded .module-content {
+  max-height: 4000px;
 }
 
 /* Loading circle */

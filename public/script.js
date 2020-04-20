@@ -1,5 +1,6 @@
 const showLoadingCircle = active => {
   const loadingCircle = document.querySelector(".loading-circle");
+  if (!loadingCircle) return;
   if (active) {
     return loadingCircle.classList.add("active");
   }
@@ -14,10 +15,12 @@ const fetchData = async url => {
     if (response.status !== 200) {
       return reject(new Error("Error getting data"));
     }
-    return resolve(body);
+    setTimeout(() => {
+      showLoadingCircle(false);
+      return resolve(body);
+    }, 500);
   });
 };
-
 const loadFn = () => {
   const body = document.body;
   const modalTriggers = document.querySelectorAll("[data-popup-trigger]");
@@ -28,7 +31,7 @@ const loadFn = () => {
     trigger.addEventListener("click", () => {
       const { popupTrigger } = trigger.dataset;
       const popupModal = document.querySelector(".popup-modal");
-
+      showLoadingCircle(true);
       fetchData(`/api/module/${popupTrigger}`)
         .then(data => {
           openPopup(popupModal, data);
@@ -45,15 +48,41 @@ const loadFn = () => {
   });
 
   const openPopup = (popupModal, data) => {
-    let toggleContent = false;
-    popupModal.querySelector(".popup-modal__title").innerHTML = data.title;
-    popupModal.querySelector(".popup-modal__content").innerHTML = data.excerpt;
-    popupModal.querySelector(".popup-modal__action").innerHTML = "Load more";
+    const { id, title, excerpt } = data;
+    const modalTitle = popupModal.querySelector(".popup-modal__title"),
+      modalContent = popupModal.querySelector(".popup-modal__content"),
+      modalAction = popupModal.querySelector(".popup-modal__action");
+    let expandContent = false;
 
-    popupModal.querySelector(".popup-modal__action").addEventListener("click", () => {
-      toggleContent = !toggleContent;
-      popupModal.querySelector(".popup-modal__content").insertAdjacentHTML("beforeend", data.content);
-      popupModal.querySelector(".popup-modal__action").innerHTML = toggleContent ? "Show less" : "Load more";
+    modalTitle.innerHTML = title;
+    modalContent.innerHTML = excerpt;
+    modalAction.innerHTML = "Load more";
+
+    popupModal.querySelector(".popup-modal__action").addEventListener("click", async () => {
+      if (!data.content) {
+        showLoadingCircle(true);
+        fetchData(`/api/module/${id}/full`)
+          .then(({ content }) => {
+            data.content = content;
+            modalContent.insertAdjacentHTML("beforeend", content);
+
+            expandContent = true;
+            if (expandContent) {
+              modalContent.classList.add("is--expanded");
+              modalAction.innerHTML = "Show less";
+            }
+          })
+          .catch(err => console.log("Error: ", err));
+      } else {
+        expandContent = !expandContent;
+        if (expandContent) {
+          modalContent.classList.add("is--expanded");
+          modalAction.innerHTML = "Show less";
+        } else {
+          modalContent.classList.remove("is--expanded");
+          modalAction.innerHTML = "Load more";
+        }
+      }
     });
 
     popupModal.classList.add("is--visible");
@@ -70,19 +99,21 @@ const loadFn = () => {
   };
 };
 
-const loadContent = () => {
+const loadFullContent = id => {
+  fetchData(`/api/module/${id}/full`).then(({ content }) => content).catch(err => console.log("Error: ", err));
+};
+
+const loadPage = () => {
   showLoadingCircle(true);
   const container = document.querySelector(".container");
 
   fetchData("/api/index")
-    .then(body => {
-      setTimeout(() => {
-        container.innerHTML = body.content;
-        document.title = body.title;
-        showLoadingCircle(false);
-
-        loadFn();
-      }, 1000);
+    .then(({ content, title }) => {
+      container.innerHTML = content;
+      document.title = title;
+      loadFn();
     })
     .catch(err => console.log("Error: ", err));
 };
+
+document.addEventListener("DOMContentLoaded", loadPage);
